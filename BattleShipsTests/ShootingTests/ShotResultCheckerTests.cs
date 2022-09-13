@@ -8,7 +8,7 @@ namespace BattleShipsTests.ShootingTests
     public class ShotResultCheckerTests
     {
         [Fact]
-        public void CheckShotResultReturns_MissedShotResult_WhenFieldForGivenCoordinatesIsEmpty()
+        public void CheckShotResultReturnsMissedShotResult_WhenFieldForGivenCoordinatesIsEmpty()
         {
             var coordinates = new Coordinates(5, 5);
             var mockComputerGrid = new Mock<IComputerGrid>();
@@ -19,7 +19,7 @@ namespace BattleShipsTests.ShootingTests
         }
 
         [Fact]
-        public void CheckShotResultReturns_HitShotResult_WhenFieldForGivenCoordinatesIsNotEmpty()
+        public void CheckShotResultReturnsHitShotResult_WhenFieldForGivenCoordinatesIsNotEmpty()
         {
             var coordinates = new Coordinates(5, 5);
             var mockComputerGrid = new Mock<IComputerGrid>();

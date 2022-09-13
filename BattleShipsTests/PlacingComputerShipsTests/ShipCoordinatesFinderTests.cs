@@ -7,7 +7,6 @@ using static BattleShips.ShipTypeEnum;
 
 namespace BattleShipsTests.PlacingComputerShipsTests
 {
-
     public class ShipCoordinatesFinderTests
     {
         private readonly int gridSize = 10;

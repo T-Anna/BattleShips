@@ -8,7 +8,7 @@ namespace BattleShipsTests.PlacingComputerShipsTests
     public class ShipCoordinatesAvailabilityCheckerTests
     {
         [Fact]
-        public void ShouldReturnTrueIfAllFieldsForGivenCoordinatesAreEmpty()
+        public void FieldsForGivenCoordinatesAreAvailable_WhenAllFieldsForGivenCoordinatesAreEmpty()
         {
             var coordinates = new List<Coordinates> { new Coordinates(0,0), new Coordinates(0, 1), new Coordinates(0, 2), new Coordinates(0, 3) };
 
@@ -23,7 +23,7 @@ namespace BattleShipsTests.PlacingComputerShipsTests
         }
 
         [Fact]
-        public void ShouldReturnFalseIfAtLeastOneFieldForGivenCoordinatesIsNotEmpty()
+        public void FieldsForGivenCoordinatesAreNotAvailable_WhenAtLeastOneFieldForGivenCoordinatesIsNotEmpty()
         {
             var coordinates = new List<Coordinates> { new Coordinates(0, 0), new Coordinates(0, 1), new Coordinates(0, 2), new Coordinates(0, 3) };
             var mockGrid = new Mock<IComputerGrid>();

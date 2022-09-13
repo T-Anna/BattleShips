@@ -22,7 +22,7 @@ namespace BattleShipsTests.PlayerInteractionsTests
         }
 
         [Fact]
-        public void PlayerGridDisplaysInCorrectFormat()
+        public void PlayerGridIsDisplayedInCorrectFormat()
         {
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
@@ -60,7 +60,7 @@ namespace BattleShipsTests.PlayerInteractionsTests
         }
 
         [Fact]
-        public void DisplayMessageWithShotResult_DisplaysCorrectMessage_MissedShot()
+        public void DisplayMessageWithShotResultDisplaysCorrectMessage_MissedShot()
         {
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
@@ -74,7 +74,7 @@ namespace BattleShipsTests.PlayerInteractionsTests
         }
 
         [Fact]
-        public void DisplayMessageWithShotResult_DisplaysCorrectMessage_HitShot_ShipNotSunk()
+        public void DisplayMessageWithShotResultDisplaysCorrectMessage_HitShot_ShipNotSunk()
         {
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
@@ -92,7 +92,7 @@ namespace BattleShipsTests.PlayerInteractionsTests
         }
 
         [Fact]
-        public void DisplayMessageWithShotResult_DisplaysCorrectMessage_HitShot_ShipSunk()
+        public void DisplayMessageWithShotResultDisplaysCorrectMessage_HitShot_ShipSunk()
         {
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);

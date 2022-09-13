@@ -7,7 +7,7 @@ namespace BattleShipsTests.PlayerGridTests
     public class PlayerGridTests
     {
         [Fact]
-        public void WasShotBefore_ReturnsFalseWhenPlayerDidntEnterGivenCoordinatesBefore()
+        public void WasShotBeforeReturnsFalse_WhenPlayerDidntEnterGivenCoordinatesBefore()
         {
             var playerGrid = new PlayerGrid();
             var result = playerGrid.WasShotBefore(new Coordinates(0, 0));
@@ -18,7 +18,7 @@ namespace BattleShipsTests.PlayerGridTests
         [InlineData(ShotResult.Missed)]
         [InlineData(ShotResult.Hit)]
 
-        public void WasShotBefore_ReturnsTrueWhenPlayerEnteredGivenCoordinatesBefore(ShotResult previousShotResult)
+        public void WasShotBeforeReturnsTrue_WhenPlayerEnteredGivenCoordinatesBefore(ShotResult previousShotResult)
         {
             var coordinates = new Coordinates(0, 0);
             var playerGrid = new PlayerGrid();
@@ -40,7 +40,7 @@ namespace BattleShipsTests.PlayerGridTests
         }
 
         [Fact]
-        public void GridStateForGivenCoordinatesIsNotSet_WhenItWasSetBefore()
+        public void ShotResultForGivenCoordinatesIsNotSet_WhenItWasSetBefore()
         {
             var coordinates = new Coordinates(0, 0);
             var playerGrid = new PlayerGrid();

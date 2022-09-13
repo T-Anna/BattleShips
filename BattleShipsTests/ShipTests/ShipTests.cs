@@ -10,7 +10,7 @@ namespace BattleShipsTests.ShipTests
         [InlineData(ShipType.BattleShip, 5)]
         [InlineData(ShipType.Destroyer, 4)]
 
-        public void WhenShipIsHitAsManyTimesAsItsSize_ShipIsSunk(ShipType shipType, int numberOfHits)
+        public void ShipIsSunk_WhenItIsHitAsManyTimesAsItsSize(ShipType shipType, int numberOfHits)
         {
             var ship = new Ship(shipType);
             for (int i = 0; i < numberOfHits; i++)
@@ -24,7 +24,7 @@ namespace BattleShipsTests.ShipTests
         [InlineData(ShipType.BattleShip, 2)]
         [InlineData(ShipType.Destroyer, 3)]
 
-        public void WhenShipIsHitLessTimesThanShipsSize_ShipIsNotSunk(ShipType shipType, int numberOfHits)
+        public void ShipIsNotSunk_WhenShipIsHitLessTimesThanShipsSize(ShipType shipType, int numberOfHits)
         {
             var ship = new Ship(shipType);
             for (int i = 0; i < numberOfHits; i++)

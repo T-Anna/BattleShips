@@ -17,6 +17,7 @@ namespace BattleShipsTests.PlacingComputerShipsTests
         private readonly Mock<IShipCoordinatesAvailabilityChecker> mockShipCoordinatesAvailabilityChecker;
         private readonly Mock<IShipToFieldsAssigner> mockShipToFieldsAssigner;
         private readonly List<IShip> shipsToBePlaced;
+        private readonly ShipsPlacer shipPlacer;
 
         public ShipsPlacerTests()
         {
@@ -31,15 +32,17 @@ namespace BattleShipsTests.PlacingComputerShipsTests
             mockShipBattleShip = new Mock<IShip>();
             mockShipDestroyer.Setup(x => x.GetSize()).Returns((int)ShipType.Destroyer);
             mockShipBattleShip.Setup(x => x.GetSize()).Returns((int)ShipType.BattleShip);
+            
             shipsToBePlaced = new List<IShip>();
             shipsToBePlaced.Add(mockShipDestroyer.Object);
             shipsToBePlaced.Add(mockShipBattleShip.Object);
+            
+            shipPlacer = new ShipsPlacer(mockShipCoordinatesFinder.Object, mockShipCoordinatesAvailabilityChecker.Object, mockShipToFieldsAssigner.Object, shipsToBePlaced);
         }
 
         [Fact]
         public void ShouldDetermineCoordinatesOfTheGridShipsWillBePlacedOn()
         {
-            var shipPlacer = new ShipsPlacer(mockShipCoordinatesFinder.Object, mockShipCoordinatesAvailabilityChecker.Object, mockShipToFieldsAssigner.Object, shipsToBePlaced);
             shipPlacer.PlaceShips();
             mockShipCoordinatesFinder.Verify(x => x.FindShipCoordinates((int)ShipType.Destroyer), Times.AtLeastOnce);
             mockShipCoordinatesFinder.Verify(x => x.FindShipCoordinates((int)ShipType.BattleShip), Times.AtLeastOnce);
@@ -53,7 +56,6 @@ namespace BattleShipsTests.PlacingComputerShipsTests
             mockShipCoordinatesFinder.Setup(x => x.FindShipCoordinates((int)ShipType.BattleShip)).Returns(battleShipCoordinates);
             mockShipCoordinatesAvailabilityChecker.Setup(x => x.AreFieldsAvailableOnTheGrid(battleShipCoordinates)).Returns(true);
 
-            var shipPlacer = new ShipsPlacer(mockShipCoordinatesFinder.Object, mockShipCoordinatesAvailabilityChecker.Object, mockShipToFieldsAssigner.Object, shipsToBePlaced);
             shipPlacer.PlaceShips();
 
             mockShipToFieldsAssigner.Verify(x => x.AssignShipToGivenFieldsCoordinatesOnTheGrid(mockShipDestroyer.Object, destroyerCoordinates), Times.Once);
@@ -68,7 +70,6 @@ namespace BattleShipsTests.PlacingComputerShipsTests
             mockShipCoordinatesFinder.Setup(x => x.FindShipCoordinates((int)ShipType.BattleShip)).Returns(battleShipCoordinates);
             mockShipCoordinatesAvailabilityChecker.Setup(x => x.AreFieldsAvailableOnTheGrid(battleShipCoordinates)).Returns(false);
 
-            var shipPlacer = new ShipsPlacer(mockShipCoordinatesFinder.Object, mockShipCoordinatesAvailabilityChecker.Object, mockShipToFieldsAssigner.Object, shipsToBePlaced);
             shipPlacer.PlaceShips();
 
             mockShipToFieldsAssigner.Verify(x => x.AssignShipToGivenFieldsCoordinatesOnTheGrid(mockShipDestroyer.Object, destroyerCoordinates), Times.Never);
@@ -76,11 +77,10 @@ namespace BattleShipsTests.PlacingComputerShipsTests
         }
 
         [Fact]
-        public void ShouldKeepLookingForShipCoordinatesUpTo50timesWhenFoundCoordinatesAreNotAvaialbe()
+        public void ShouldKeepLookingForShipCoordinatesUpTo50times_WhenFoundCoordinatesAreNotAvaialbe()
         {
             mockShipCoordinatesAvailabilityChecker.Setup(x => x.AreFieldsAvailableOnTheGrid(It.IsAny<List<Coordinates>>())).Returns(false);
 
-            var shipPlacer = new ShipsPlacer(mockShipCoordinatesFinder.Object, mockShipCoordinatesAvailabilityChecker.Object, mockShipToFieldsAssigner.Object, shipsToBePlaced);
             shipPlacer.PlaceShips();
             mockShipCoordinatesFinder.Verify(x => x.FindShipCoordinates((int)ShipType.Destroyer), Times.Exactly(50));
             mockShipCoordinatesFinder.Verify(x => x.FindShipCoordinates((int)ShipType.BattleShip), Times.Exactly(50));

@@ -33,7 +33,7 @@ namespace BattleShipsTests.ShootingTests
         }
 
         [Fact]
-        public void AfterShootingShotShouldHaveCoordinatesSet()
+        public void ShotShouldHaveCoordinatesSet()
         {
             var shotCoordinates = new Coordinates(1, 1);
             mockShotCoordinatesTaker.Setup(x => x.DetermineShotCoordinates()).Returns(shotCoordinates);
@@ -45,7 +45,7 @@ namespace BattleShipsTests.ShootingTests
         [InlineData(ShotResult.Missed)]
         [InlineData(ShotResult.Hit)]
 
-        public void Shoot_ShouldSetShotResultOnTheShot(ShotResult expectedShotResult)
+        public void ShotShouldHaveShotResultSet(ShotResult expectedShotResult)
         {
             var shotCoordinates = new Coordinates(1, 1);
             mockShotCoordinatesTaker.Setup(x => x.DetermineShotCoordinates()).Returns(shotCoordinates);
@@ -56,7 +56,7 @@ namespace BattleShipsTests.ShootingTests
         }
 
         [Fact]
-        public void WhenShotResultIsHit_ShipShouldBeHit()
+        public void ShipShouldBeHit_WhenShotResultIsHit()
         {
             var shotCoordinates = new Coordinates(1, 1);
             mockShotCoordinatesTaker.Setup(x => x.DetermineShotCoordinates()).Returns(shotCoordinates);
@@ -67,7 +67,7 @@ namespace BattleShipsTests.ShootingTests
         }
         
         [Fact]
-        public void WhenShotResultIsMissed_ShipShouldNotBeHit()
+        public void ShipShouldNotBeHit_WhenShotResultIsMissed()
         {
             var shotCoordinates = new Coordinates(1, 1);
             mockShotCoordinatesTaker.Setup(x => x.DetermineShotCoordinates()).Returns(shotCoordinates);
@@ -77,7 +77,7 @@ namespace BattleShipsTests.ShootingTests
         }
 
         [Fact]
-        public void WhenShotResultIsHit_ShipHitIsSetOnShot()
+        public void ShipHitIsSetOnShot_WhenShotResultIsHit()
         {
             var shotCoordinates = new Coordinates(1, 1);
             mockShotCoordinatesTaker.Setup(x => x.DetermineShotCoordinates()).Returns(shotCoordinates);
@@ -88,7 +88,7 @@ namespace BattleShipsTests.ShootingTests
         }
 
         [Fact]
-        public void WhenShotResultIsMissed_ShipHitOnShotIsNull()
+        public void ShipHitOnShotIsNull_WhenShotResultIsMissed()
         {
             var shotCoordinates = new Coordinates(1, 1);
             mockShotCoordinatesTaker.Setup(x => x.DetermineShotCoordinates()).Returns(shotCoordinates);
@@ -97,9 +97,9 @@ namespace BattleShipsTests.ShootingTests
             
             Assert.Null(shot.ShipHit);
         }
-
+        
         [Fact]
-        public void Shoot_ShouldSetShotResultOnPlayerGrid()
+        public void ShootShouldSetShotResultOnPlayerGrid()
         {
             var shot = shooter.Shoot();
             mockPlayerGrid.Verify(x => x.SetShotResultForGivenCoordinates(shot.Coordinates, shot.ShotResult));

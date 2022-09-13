@@ -25,7 +25,7 @@ namespace BattleShipsTests.ShootingTests
         }
 
         [Fact]
-        public void ShouldRepeatAskingAboutShotCoordinates_WhenCoordinatesWereShotWasBefore()
+        public void ShouldRepeatAskingAboutShotCoordinates_WhenCoordinatesWereShotBefore()
         {
             var alreadyShotCoordinates = new Coordinates(3, 5);
             var notShotCoordinates = new Coordinates(2, 3);

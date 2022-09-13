@@ -40,28 +40,7 @@ namespace BattleShipsTests.GameTests
         }
 
         [Fact]
-        public void WelcomeMessageShouldBeDisplayedOnce()
-        {
-            mockShip1.Setup(x => x.IsSunk()).Returns(true);
-            mockShip2.Setup(x => x.IsSunk()).Returns(true);
-
-            game.Play();
-            mockPlayerInteractions.Verify(x => x.DisplayWelcomeMessage(), Times.Once);
-        }
-
-        [Fact]
-        public void PlayerGridShouldBeDisplayedOnceBeforeShootingStarts()
-        {
-            mockShip1.Setup(x => x.IsSunk()).Returns(true);
-            mockShip2.Setup(x => x.IsSunk()).Returns(true);
-
-            game.Play();
-            mockPlayerInteractions.Verify(x => x.DisplayPlayerGrid(), Times.Once);
-            mockShooter.Verify(x => x.Shoot(), Times.Never);
-        }
-
-        [Fact]
-        public void ShootingShouldContinueUntilAllShipsAreSunk()
+        public void ShootingShouldContinue_UntilAllShipsAreSunk()
         {
             mockShip1.SetupSequence(x => x.IsSunk()).Returns(false)
                 .Returns(true)
@@ -74,7 +53,7 @@ namespace BattleShipsTests.GameTests
         }
 
         [Fact]
-        public void MessageWithShotResultShouldBeDisplayedAfterEachShot()
+        public void MessageWithShotResultShouldBeDisplayed_AfterEachShot()
         {
             var shot1 = new Shot(new Coordinates(1, 1));
             var shot2 = new Shot(new Coordinates(1, 2));
@@ -94,7 +73,7 @@ namespace BattleShipsTests.GameTests
         }
 
         [Fact]
-        public void PlayerGridShouldBeDisplayedAfterEachShot()
+        public void PlayerGridShouldBeDisplayed_AfterEachShot()
         {
             mockShip1.SetupSequence(x => x.IsSunk()).Returns(false)
                 .Returns(false)
@@ -107,14 +86,31 @@ namespace BattleShipsTests.GameTests
         }
 
         [Fact]
-        public void GameEndMessageShouldBeDisplayedOnceAfterAllShipsAreSunk()
+        public void WelcomeMessageShouldBeDisplayedOnce()
         {
-            mockShip1.SetupSequence(x => x.IsSunk()).Returns(false)
-                .Returns(true)
-                .Returns(true)
-                .Returns(true);
-            mockShip2.SetupSequence(x => x.IsSunk()).Returns(false)
-                .Returns(true);
+            mockShip1.Setup(x => x.IsSunk()).Returns(true);
+            mockShip2.Setup(x => x.IsSunk()).Returns(true);
+
+            game.Play();
+            mockPlayerInteractions.Verify(x => x.DisplayWelcomeMessage(), Times.Once);
+        }
+
+        [Fact]
+        public void PlayerGridShouldBeDisplayedOnce_RegardlessShooting()
+        {
+            mockShip1.Setup(x => x.IsSunk()).Returns(true);
+            mockShip2.Setup(x => x.IsSunk()).Returns(true);
+
+            game.Play();
+            mockPlayerInteractions.Verify(x => x.DisplayPlayerGrid(), Times.Once);
+            mockShooter.Verify(x => x.Shoot(), Times.Never);
+        }
+
+        [Fact]
+        public void GameEndMessageShouldBeDisplayedOnce()
+        {
+            mockShip1.Setup(x => x.IsSunk()).Returns(true);
+            mockShip2.Setup(x => x.IsSunk()).Returns(true);
 
             game.Play();
             mockPlayerInteractions.Verify(x => x.DisplayGameEndMessage(), Times.Once);
