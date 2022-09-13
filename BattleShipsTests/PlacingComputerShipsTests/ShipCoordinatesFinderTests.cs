@@ -107,12 +107,12 @@ namespace BattleShipsTests.PlacingComputerShipsTests
 
              var shipCoordinatesFinder = new ShipCoordinatesFinder(randomMock.Object);
 
-             var coordinates = shipCoordinatesFinder.FindShipCoordinates(shipSize);
+             var shipCoordinates = shipCoordinatesFinder.FindShipCoordinates(shipSize);
 
              for (int i = 0; i < shipSize; i++)
              {
-                 Assert.Equal(initialCoordinatesRow + i, coordinates[i].Row);
-                 Assert.Equal(initialCoordinatesColumn, coordinates[i].Column);
+                 Assert.Equal(initialCoordinatesRow + i, shipCoordinates[i].Row);
+                 Assert.Equal(initialCoordinatesColumn, shipCoordinates[i].Column);
              }
          }
 
@@ -131,14 +131,13 @@ namespace BattleShipsTests.PlacingComputerShipsTests
 
             var shipCoordinatesFinder = new ShipCoordinatesFinder(randomMock.Object);
 
-            var coordinates = shipCoordinatesFinder.FindShipCoordinates(shipSize);
+            var shipCoordinates = shipCoordinatesFinder.FindShipCoordinates(shipSize);
 
             for (int i = 0; i < shipSize; i++)
             {
-                Assert.Equal(initialCoordinatesRow, coordinates[i].Row);
-                Assert.Equal(initialCoordinatesColumn + i, coordinates[i].Column);
+                Assert.Equal(initialCoordinatesRow, shipCoordinates[i].Row);
+                Assert.Equal(initialCoordinatesColumn + i, shipCoordinates[i].Column);
             }
         }
-
     }
 }

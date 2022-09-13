@@ -12,7 +12,7 @@ namespace BattleShips
             this.grid = grid;
         }
 
-        public void AssignShipToGivenFieldsCoordinatesOnTheGrid(IShip shipToBePlaced, List<Coordinates> coordinates)
+        public void AssignShipToFieldsForGivenCoordinatesofTheGrid(IShip shipToBePlaced, List<Coordinates> coordinates)
         {
             for (int i = 0; i < coordinates.Count; i++)
             {

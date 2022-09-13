@@ -2,7 +2,7 @@
 {
     public class ComputerGrid : IComputerGrid
     {
-        private IField[,] Fields { get; }
+        private readonly IField[,] Fields;
 
         public ComputerGrid(IField[,] fields)
         {

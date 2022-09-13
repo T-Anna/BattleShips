@@ -8,7 +8,7 @@ namespace BattleShipsTests.PlacingComputerShipsTests
     public class ShipToFieldsAssignerTests
     {
         [Fact]
-        public void ShouldAssignShipToFieldsOnTheGivenCoordinatesOfTheGrid()
+        public void ShouldAssignShipToFieldsForGivenCoordinatesOfTheGrid()
         {
             var coordinates = new List<Coordinates> { new Coordinates(0, 0), new Coordinates(0, 1), new Coordinates(0, 2), new Coordinates(0, 3) };
 
@@ -24,7 +24,7 @@ namespace BattleShipsTests.PlacingComputerShipsTests
             }
 
             var shipPlacer = new ShipToFieldsAssigner(mockGrid.Object);
-            shipPlacer.AssignShipToGivenFieldsCoordinatesOnTheGrid(mockShip.Object, coordinates);
+            shipPlacer.AssignShipToFieldsForGivenCoordinatesofTheGrid(mockShip.Object, coordinates);
             foreach (var field in mockFields)
             {
                 field.VerifySet(x => x.Ship = mockShip.Object, Times.Once);

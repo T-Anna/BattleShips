@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace BattleShips.PlacingComputerShips
+﻿namespace BattleShips.PlacingComputerShips
 {
     public interface IShipsPlacer
     {

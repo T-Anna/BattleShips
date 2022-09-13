@@ -19,13 +19,16 @@ namespace BattleShipsTests.GameTests
         public GameTests()
         {
             mockPlayerInteractions = new Mock<IPlayerInteractions>();
-            ships = new List<IShip>();
+
             mockShip1 = new Mock<IShip>();
             mockShip2 = new Mock<IShip>();
+            ships = new List<IShip>();
             ships.Add(mockShip1.Object);
             ships.Add(mockShip2.Object);
+
             mockShipsPlacer = new Mock<IShipsPlacer>();
             mockShooter = new Mock<IShooter>();
+
             game = new Game(mockPlayerInteractions.Object, ships, mockShipsPlacer.Object, mockShooter.Object);
         }
 

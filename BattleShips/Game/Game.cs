@@ -5,14 +5,14 @@ namespace BattleShips
 {
     public class Game
     {
-        private readonly IPlayerInteractions userInteractions;
+        private readonly IPlayerInteractions playerInteractions;
         private readonly List<IShip> shipsInGame;
         private readonly IShipsPlacer shipsPlacer;
         private readonly IShooter shooter;
 
-        public Game(IPlayerInteractions userInteractions, List<IShip> shipsInGame, IShipsPlacer shipsPlacer, IShooter shooter)
+        public Game(IPlayerInteractions playerInteractions, List<IShip> shipsInGame, IShipsPlacer shipsPlacer, IShooter shooter)
         {
-            this.userInteractions = userInteractions;
+            this.playerInteractions = playerInteractions;
             this.shipsInGame = shipsInGame;
             this.shipsPlacer = shipsPlacer;
             this.shooter = shooter;
@@ -21,16 +21,16 @@ namespace BattleShips
         public void Play()
         {
             shipsPlacer.PlaceShips();
-            userInteractions.DisplayWelcomeMessage();
-            userInteractions.DisplayPlayerGrid();
+            playerInteractions.DisplayWelcomeMessage();
+            playerInteractions.DisplayPlayerGrid();
 
             while (!HasGameEnded())
             {
                 var shot = shooter.Shoot();
-                userInteractions.DisplayMessageWithShotResult(shot); 
-                userInteractions.DisplayPlayerGrid();
+                playerInteractions.DisplayMessageWithShotResult(shot); 
+                playerInteractions.DisplayPlayerGrid();
             }
-            userInteractions.DisplayGameEndMessage();
+            playerInteractions.DisplayGameEndMessage();
         }
 
         private bool HasGameEnded()

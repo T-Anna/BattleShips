@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BattleShips.PlacingComputerShips
 {
@@ -31,18 +27,18 @@ namespace BattleShips.PlacingComputerShips
             foreach (var ship in shipsToBePlaced)
             {
                 int tryCount = 50;
-                bool wasShipPlaced = false; ;
-                do
+                bool wasShipPlaced = false;
+
+                while (wasShipPlaced == false && tryCount > 0)
                 {
                     var shipCoordinates = shipCoordinatesFinder.FindShipCoordinates(ship.GetSize());
                     if (shipCoordinatesAvailabilityChecker.AreFieldsAvailableOnTheGrid(shipCoordinates))
                     {
-                        shipToFieldsAssigner.AssignShipToGivenFieldsCoordinatesOnTheGrid(ship, shipCoordinates);
+                        shipToFieldsAssigner.AssignShipToFieldsForGivenCoordinatesofTheGrid(ship, shipCoordinates);
                         wasShipPlaced = true;
                     }
                     tryCount--;
                 }
-                while (wasShipPlaced == false && tryCount > 0);
             }
         }
     }

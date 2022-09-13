@@ -1,10 +1,4 @@
-﻿
-using BattleShips.PlacingComputerShips;
-using System;
-using System.Collections.Generic;
-using static BattleShips.ShipTypeEnum;
-
-namespace BattleShips
+﻿namespace BattleShips
 {
     class Program
     {

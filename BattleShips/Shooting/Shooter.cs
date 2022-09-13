@@ -26,8 +26,8 @@ namespace BattleShips
             if(shot.ShotResult == ShotResult.Hit)
             {
                 var ship = computerGrid.GetField(shotCoordinates).Ship;
-                shot.ShipHit = ship;
                 ship.TakeHit();
+                shot.ShipHit = ship;
             }
             playerGrid.SetShotResultForGivenCoordinates(shot.Coordinates, shot.ShotResult);
             return shot;

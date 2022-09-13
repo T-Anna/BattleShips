@@ -4,7 +4,7 @@ namespace BattleShips
 {
     public class PlayerGrid : IPlayerGrid
     {
-        ShotResult[,] grid;
+        readonly ShotResult[,] grid;
 
         public PlayerGrid()
         {

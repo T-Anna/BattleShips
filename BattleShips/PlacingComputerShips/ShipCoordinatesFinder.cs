@@ -16,26 +16,25 @@ namespace BattleShips
 
         public List<Coordinates> FindShipCoordinates(int shipSize)
         {
-            var coordinates = new List<Coordinates>();
+            var shipCoordinates = new List<Coordinates>();
 
             var shipOrientation = FindRandomShipOrientation();
-            var initialCoordinates  = FindRandomInitialShipCoordinates(shipOrientation, shipSize);
+            var initialCoordinates = FindRandomInitialShipCoordinates(shipOrientation, shipSize);
 
-            coordinates.Add(initialCoordinates);
+            shipCoordinates.Add(initialCoordinates);
 
             for (int i = 1; i < shipSize; i++)
             {
                 if (shipOrientation == ShipOrientation.Horizontal)
                 {
-                    coordinates.Add(new Coordinates(initialCoordinates.Row, initialCoordinates.Column + i ));
+                    shipCoordinates.Add(new Coordinates(initialCoordinates.Row, initialCoordinates.Column + i));
                 }
-
-                if (shipOrientation == ShipOrientation.Vertical)
+                else if (shipOrientation == ShipOrientation.Vertical)
                 {
-                    coordinates.Add(new Coordinates(initialCoordinates.Row + i, initialCoordinates.Column));
+                    shipCoordinates.Add(new Coordinates(initialCoordinates.Row + i, initialCoordinates.Column));
                 }
             }
-            return coordinates;
+            return shipCoordinates;
         }
 
         private ShipOrientation FindRandomShipOrientation()
@@ -54,8 +53,7 @@ namespace BattleShips
                 row = random.Next(0, gridSize);
                 column = random.Next(0, maxDistanceFromGridOriginToInitialShipPositionAlongAxisShipWillBePlacedOn + 1);
             }
-
-            if (shipOrientation == ShipOrientation.Vertical)
+            else if (shipOrientation == ShipOrientation.Vertical)
             {
                 row = random.Next(0, maxDistanceFromGridOriginToInitialShipPositionAlongAxisShipWillBePlacedOn + 1);
                 column = random.Next(0, gridSize);
