@@ -7,5 +7,6 @@
         void DisplayPlayerGrid();
         void DisplayWelcomeMessage();
         Coordinates AskAboutShotCoordinates();
+        void DisplayAlreadyShotMessage();
     }
 }

@@ -37,6 +37,7 @@ namespace BattleShipsTests.ShootingTests
 
             shotCoordinatesTaker.DetermineShotCoordinates();
             userInteractionsMock.Verify(x => x.AskAboutShotCoordinates(), Times.Exactly(2));
+            userInteractionsMock.Verify(x => x.DisplayAlreadyShotMessage(), Times.Once);
         }
     }
 }

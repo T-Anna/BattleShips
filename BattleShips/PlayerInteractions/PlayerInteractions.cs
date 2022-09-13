@@ -20,7 +20,7 @@ namespace BattleShips
                 "- 2x Destroyer (4 fields long)\n" +
                 "Ship is sunk when all fields it is placed on are hit. \n" +
                 "To shoot given field please enter coordinate of your shot as 2 characters - for example 'A5' (capital letter as a column and number as a row) and press enter.\n" +
-                "Please note that program is not assured against incorrect format of the input \n\n");
+                "Please note that program is not proof against incorrect format of the input \n\n");
         }
 
         public void DisplayPlayerGrid()
@@ -58,11 +58,16 @@ namespace BattleShips
             return coordinates;
         }
 
+        public void DisplayAlreadyShotMessage()
+        {
+            Console.WriteLine("You already shot that field.");
+        }
+
         public void DisplayMessageWithShotResult(Shot shot)
         {
             if (shot.ShotResult == ShotResultEnum.ShotResult.Missed)
             {
-                DisplayMissMessage();
+                DisplayMissedMessage();
             }
             else if (shot.ShotResult == ShotResultEnum.ShotResult.Hit)
             {
@@ -82,7 +87,7 @@ namespace BattleShips
             Console.WriteLine("You sunk all ships. You won the game! Congratulations!");
         }
 
-        private void DisplayMissMessage()
+        private void DisplayMissedMessage()
         {
             Console.WriteLine("Shot missed. Try again.");
         }

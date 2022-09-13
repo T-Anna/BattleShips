@@ -2,22 +2,23 @@
 {
     public class ShotCoordinatesTaker : IShotCoordinatesTaker
     {
-        private readonly IPlayerInteractions userInteractions;
+        private readonly IPlayerInteractions playerInteractions;
         private readonly IPlayerGrid playerGrid;
 
-        public ShotCoordinatesTaker(IPlayerInteractions userInteractions, IPlayerGrid playerGrid)
+        public ShotCoordinatesTaker(IPlayerInteractions playerInteractions, IPlayerGrid playerGrid)
         {
-            this.userInteractions = userInteractions;
+            this.playerInteractions = playerInteractions;
             this.playerGrid = playerGrid;
         }
 
         public Coordinates DetermineShotCoordinates()
         {
-            var shotCoordinates = userInteractions.AskAboutShotCoordinates();
+            var shotCoordinates = playerInteractions.AskAboutShotCoordinates();
 
             while (playerGrid.WasShotBefore(shotCoordinates))
             {
-                shotCoordinates = userInteractions.AskAboutShotCoordinates();
+                playerInteractions.DisplayAlreadyShotMessage();
+                shotCoordinates = playerInteractions.AskAboutShotCoordinates();
             }
             return shotCoordinates;
         }
